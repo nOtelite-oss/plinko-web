@@ -2,8 +2,10 @@
 
 ### What is Plinko?
 
-Plinko is a game where you drop certain amount of balls to a few boxes where there are stick between them. When a ball drops, 
+Plinko is a game where you drop certain amount of balls to a few boxes where there are sticks between them. When a ball drops, 
 it have a 50% change of going left or right. This continues until the ball falls to some box.
+
+![image](https://user-images.githubusercontent.com/67863486/234365759-393ca7ae-b854-455a-a036-a08b60b5e3d3.png)
 
 ### About This Page
 
