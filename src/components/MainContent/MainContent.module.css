@@ -1,0 +1,12 @@
+.MainContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.FormContent {
+  padding: 1rem;
+}
+
+label {
+  font-weight: 700;
+}
