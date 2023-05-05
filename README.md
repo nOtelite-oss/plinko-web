@@ -1,3 +1,16 @@
+# Plinko Probability Simulation Web Site
+
+### What is Plinko?
+
+Plinko is a game where you drop certain amount of balls to a few boxes where there are sticks between them. When a ball drops, 
+it have a 50% change of going left or right. This continues until the ball falls to some box.
+
+![image](https://user-images.githubusercontent.com/67863486/234365759-393ca7ae-b854-455a-a036-a08b60b5e3d3.png)
+
+### About This Page
+
+This page simulates plinko probability at significant amount of ball counts within seconds.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
