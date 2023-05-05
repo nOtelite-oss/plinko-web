@@ -1,10 +1,27 @@
-import classes from './MainContent.module.css';
+import React, { useState } from 'react';
+import classes from './ValueForm.module.css';
 
-const MainContent = () => {
+const ValueForm = (props) => {
+  const [boxNumber, boxNumberChanger] = useState();
+  const [ballNumber, ballNumberChanger] = useState();
+
+  const boxNumberHandler = (event) => {
+    boxNumberChanger(event.target.value);
+  };
+
+  const ballNumberHandler = (event) => {
+    ballNumberChanger(event.target.value);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    props.getValues([boxNumber, ballNumber]);
+  };
+
   return (
     <div>
       <h1 className={classes.MainHeader}>Plinko Simulation</h1>
-      <form className={classes.MainContainer}>
+      <form className={classes.MainContainer} onSubmit={submitHandler}>
         <div className={classes.FormContent}>
           <label className={classes.FormLabel} htmlFor='box-input'>
             Box Number:
@@ -17,11 +34,13 @@ const MainContent = () => {
             placeholder='Ex: 5'
             min={1}
             max={29}
+            onChange={boxNumberHandler}
+            required
           />
         </div>
         <div className={classes.FormContent}>
           <label className={classes.FormLabel} htmlFor='ball-input'>
-            Ball Input:
+            Ball Number:
           </label>
           <input
             className={classes.FormInput}
@@ -29,6 +48,8 @@ const MainContent = () => {
             id='ball-input'
             name='ball-input'
             placeholder='Ex: 1000000'
+            onChange={ballNumberHandler}
+            required
           />
         </div>
         <div className={classes.FormContent}>
@@ -41,4 +62,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent;
+export default ValueForm;
