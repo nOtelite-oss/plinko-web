@@ -13,6 +13,24 @@ const Simulation = (props) => {
     const BALL_DROP = parseInt(props.ballCount); //How many balls will be dropped
     const processParts = 20;
 
+    const getResults = () => {
+      console.log('getResults Function Worked');
+      changeSumBoxes(sumBoxes);
+
+      let sumDeflection = [];
+      for (let i = 0; i < BOX_COUNT; i++) {
+        sumDeflection[i] = Math.abs(
+          (sumBoxes[i] * 100) / idealResultScaled[i] - 100
+        );
+      }
+      changeDeflection(sumDeflection);
+
+      const avarageDeflection =
+        sumDeflection.reduce((total, value) => total + value, 0) /
+        sumDeflection.length;
+
+      changeAvarageDeflection(avarageDeflection);
+    };
     //? Combination Function:
     const combination = (() => {
       const cache = {};
@@ -44,11 +62,11 @@ const Simulation = (props) => {
 
     const idealResultScaled = idealResult.map((value) => value * closestNumber);
 
+    changeIdealResultScaled(idealResultScaled);
     //* THE FUNCTIONS AND VARIBLES THAT PLINKO SIMULATION REQUIRES finished
     const sumBoxes = new Array(BOX_COUNT).fill(0);
 
     if (BALL_DROP > 20000000) {
-      let section = 0;
       console.log('Processing:');
 
       const boxDropPossibilitys = [];
@@ -72,8 +90,7 @@ const Simulation = (props) => {
             }
           }
         }
-        console.log(section);
-        section += 100 / processParts;
+        getResults();
       }
     } else {
       const boxDropPossibilitys = [];
@@ -93,27 +110,29 @@ const Simulation = (props) => {
           }
         }
       }
+
+      getResults();
     }
     //* Calculating the results:
 
     //? Calculating the deflection:
-    let sumDeflection = [];
-    for (let i = 0; i < BOX_COUNT; i++) {
-      sumDeflection[i] = Math.abs(
-        (sumBoxes[i] * 100) / idealResultScaled[i] - 100
-      );
-    }
 
-    const avarageDeflection =
-      sumDeflection.reduce((total, value) => total + value, 0) /
-      sumDeflection.length;
+    // let sumDeflection = [];
+    // for (let i = 0; i < BOX_COUNT; i++) {
+    //   sumDeflection[i] = Math.abs(
+    //     (sumBoxes[i] * 100) / idealResultScaled[i] - 100
+    //   );
+    // }
 
-    changeSumBoxes(sumBoxes);
-    changeIdealResultScaled(idealResultScaled);
-    changeDeflection(sumDeflection);
-    changeAvarageDeflection(avarageDeflection);
+    // const avarageDeflection =
+    //   sumDeflection.reduce((total, value) => total + value, 0) /
+    //   sumDeflection.length;
+
+    // changeSumBoxes(sumBoxes);
+    // changeIdealResultScaled(idealResultScaled);
+    // changeDeflection(sumDeflection);
+    // changeAvarageDeflection(avarageDeflection);
   };
-  console.log([sumBoxes, idealResultScaled, sumDeflection, avarageDeflection]);
 
   useEffect(() => {
     const effectFunction = () => {
@@ -122,6 +141,23 @@ const Simulation = (props) => {
 
     effectFunction();
   }, [props]);
+
+  useEffect(
+    () =>
+      console.log([
+        sumBoxes,
+        idealResultScaled,
+        sumDeflection,
+        avarageDeflection,
+      ]),
+    [sumBoxes, idealResultScaled, sumDeflection, avarageDeflection]
+  );
+
+  return (
+    <div>
+      <p>{(sumBoxes, idealResultScaled, sumDeflection, avarageDeflection)}</p>
+    </div>
+  );
 };
 
 export default Simulation;
