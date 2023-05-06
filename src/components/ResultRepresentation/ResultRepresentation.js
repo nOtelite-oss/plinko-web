@@ -1,11 +1,11 @@
 import React from 'react';
-import PlinkoSim from './PlinkoSim';
+import Simulation from './Simulation';
 
 const ResultRepresentation = (props) => {
   return (
     <div>
       {props.ballCount && (
-        <PlinkoSim ballCount={props.ballCount} boxCount={props.boxCount} />
+        <Simulation ballCount={props.ballCount} boxCount={props.boxCount} />
       )}
     </div>
   );
