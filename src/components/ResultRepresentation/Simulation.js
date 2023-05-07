@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 
 const Simulation = (props) => {
-  const [sumBoxes, changeSumBoxes] = useState();
-  const [idealResultScaled, changeIdealResultScaled] = useState();
-  const [sumDeflection, changeDeflection] = useState();
-  const [avarageDeflection, changeAvarageDeflection] = useState();
+  const [sumBoxes, changeSumBoxes] = useState(['-']);
+  const [idealResultScaled, changeIdealResultScaled] = useState(['-']);
+  const [sumDeflection, changeDeflection] = useState(['-']);
+  const [avarageDeflection, changeAvarageDeflection] = useState(0);
 
   const plinkoSim = (props) => {
     //* THE FUNCTIONS AND VARIBLES THAT PLINKO SIMULATION REQUIRES started
     //? Start values:
     const BOX_COUNT = parseInt(props.boxCount); //How many boxes there will be. Note that if you give a value greater than 19 then ideal result is all 0. I dont know why.
     const BALL_DROP = parseInt(props.ballCount); //How many balls will be dropped
-    const processParts = 20;
+    const processParts = 2000;
 
     const getResults = () => {
       console.log('getResults Function Worked');
@@ -113,25 +113,6 @@ const Simulation = (props) => {
 
       getResults();
     }
-    //* Calculating the results:
-
-    //? Calculating the deflection:
-
-    // let sumDeflection = [];
-    // for (let i = 0; i < BOX_COUNT; i++) {
-    //   sumDeflection[i] = Math.abs(
-    //     (sumBoxes[i] * 100) / idealResultScaled[i] - 100
-    //   );
-    // }
-
-    // const avarageDeflection =
-    //   sumDeflection.reduce((total, value) => total + value, 0) /
-    //   sumDeflection.length;
-
-    // changeSumBoxes(sumBoxes);
-    // changeIdealResultScaled(idealResultScaled);
-    // changeDeflection(sumDeflection);
-    // changeAvarageDeflection(avarageDeflection);
   };
 
   useEffect(() => {
@@ -153,11 +134,24 @@ const Simulation = (props) => {
     [sumBoxes, idealResultScaled, sumDeflection, avarageDeflection]
   );
 
-  return (
-    <div>
-      <p>{(sumBoxes, idealResultScaled, sumDeflection, avarageDeflection)}</p>
-    </div>
-  );
+  const sumResults = [
+    ...sumBoxes,
+    '--',
+    ...idealResultScaled,
+    '--',
+    ...sumDeflection,
+    '--',
+    avarageDeflection,
+  ];
+
+  const mapResults = (item) => {
+    if (item !== '--') {
+      return <p style={{ display: 'flex' }}>{item}</p>;
+    } else {
+      return <p>{item}</p>;
+    }
+  };
+  return <div>{sumResults.map(mapResults)}</div>;
 };
 
 export default Simulation;
