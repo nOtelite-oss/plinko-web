@@ -110,7 +110,6 @@ const Simulation = (props) => {
           }
         }
       }
-
       getResults();
     }
   };
