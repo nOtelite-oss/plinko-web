@@ -8,16 +8,24 @@ import ResultRepresentation from './components/ResultRepresentation/ResultRepres
 function App() {
   const [boxCount, changeBoxCount] = useState();
   const [ballCount, changeBallCount] = useState();
+  const [submitValue, submitValueHandler] = useState(0);
 
   const FormValueHandler = (props) => {
     changeBoxCount(props[0]);
     changeBallCount(props[1]);
+    submitValueHandler([props[2]]);
   };
 
   return (
     <div>
       <ValueForm getValues={FormValueHandler} />
-      <ResultRepresentation ballCount={ballCount} boxCount={boxCount} />
+      {ballCount && (
+        <ResultRepresentation
+          ballCount={ballCount}
+          boxCount={boxCount}
+          submitValue={submitValue}
+        />
+      )}
     </div>
   );
 }

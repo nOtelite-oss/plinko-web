@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import Graph from './Graph';
 
 const Simulation = (props) => {
   const [sumBoxes, changeSumBoxes] = useState(['-']);
   const [idealResultScaled, changeIdealResultScaled] = useState(['-']);
   const [sumDeflection, changeDeflection] = useState(['-']);
   const [avarageDeflection, changeAvarageDeflection] = useState(0);
+  const [idealPascalTotal, changeIdealPascalTotal] = useState(0);
 
   const plinkoSim = (props) => {
     //* THE FUNCTIONS AND VARIBLES THAT PLINKO SIMULATION REQUIRES started
@@ -14,7 +16,6 @@ const Simulation = (props) => {
     const processParts = 2000;
 
     const getResults = () => {
-      console.log('getResults Function Worked');
       changeSumBoxes(sumBoxes);
 
       let sumDeflection = [];
@@ -61,6 +62,13 @@ const Simulation = (props) => {
     const closestNumber = Math.round(BALL_DROP / pascalTotal);
 
     const idealResultScaled = idealResult.map((value) => value * closestNumber);
+
+    const pascalTotalScaled = idealResultScaled.reduce(
+      (total, value) => total + value,
+      0
+    );
+
+    changeIdealPascalTotal(pascalTotalScaled);
 
     changeIdealResultScaled(idealResultScaled);
     //* THE FUNCTIONS AND VARIBLES THAT PLINKO SIMULATION REQUIRES finished
@@ -122,35 +130,15 @@ const Simulation = (props) => {
     effectFunction();
   }, [props]);
 
-  useEffect(
-    () =>
-      console.log([
-        sumBoxes,
-        idealResultScaled,
-        sumDeflection,
-        avarageDeflection,
-      ]),
-    [sumBoxes, idealResultScaled, sumDeflection, avarageDeflection]
+  return (
+    <Graph
+      sumBoxes={sumBoxes}
+      pascalTotal={idealPascalTotal}
+      idealResult={idealResultScaled}
+      sumDeflection={sumDeflection}
+      avarageDeflection={avarageDeflection}
+    />
   );
-
-  const sumResults = [
-    ...sumBoxes,
-    '--',
-    ...idealResultScaled,
-    '--',
-    ...sumDeflection,
-    '--',
-    avarageDeflection,
-  ];
-
-  const mapResults = (item) => {
-    if (item !== '--') {
-      return <p style={{ display: 'flex' }}>{item}</p>;
-    } else {
-      return <p>{item}</p>;
-    }
-  };
-  return <div>{sumResults.map(mapResults)}</div>;
 };
 
 export default Simulation;

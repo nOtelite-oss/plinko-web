@@ -5,6 +5,8 @@ const ValueForm = (props) => {
   const [boxNumber, boxNumberChanger] = useState();
   const [ballNumber, ballNumberChanger] = useState();
 
+  const [submitValue, submitValueHandler] = useState(0);
+
   const boxNumberHandler = (event) => {
     boxNumberChanger(event.target.value);
   };
@@ -15,7 +17,8 @@ const ValueForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.getValues([boxNumber, ballNumber]);
+    props.getValues([boxNumber, ballNumber, submitValue]);
+    submitValueHandler(submitValue + 1);
   };
 
   return (

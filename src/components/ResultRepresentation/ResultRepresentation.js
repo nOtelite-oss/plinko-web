@@ -4,9 +4,11 @@ import Simulation from './Simulation';
 const ResultRepresentation = (props) => {
   return (
     <div>
-      {props.ballCount && (
-        <Simulation ballCount={props.ballCount} boxCount={props.boxCount} />
-      )}
+      <Simulation
+        ballCount={props.ballCount}
+        boxCount={props.boxCount}
+        submitValue={props.submitValue}
+      />
     </div>
   );
 };
