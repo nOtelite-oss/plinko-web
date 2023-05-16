@@ -16,7 +16,11 @@ const Graph = (props) => {
         : '';
 
     return (
-      <div style={{ height: '100%', width: '100%' }} key={Math.random()}>
+      <div
+        className={classes.MapItems}
+        style={{ height: '100%', width: '100%' }}
+        key={index}
+      >
         <div className={classes.Outer}>
           <div
             className={classes.Fill}
@@ -25,19 +29,31 @@ const Graph = (props) => {
             }}
           />
         </div>
+
+        <GraphValues
+          index={index}
+          sumBoxes={props.sumBoxes}
+          idealResult={props.idealResult}
+          sumDeflection={props.sumDeflection}
+          valueIndicatorColor={valueIndicatorColor}
+        />
       </div>
     );
   };
 
+  const graphWidth =
+    props.sumBoxes.length <= 10
+      ? props.sumBoxes.length * 4 + 'rem'
+      : 70 + 'rem';
+
   return (
-    <div
-      className={classes.Container}
-      style={{
-        width:
-          props.sumBoxes.length < 5 ? props.sumBoxes.length * 10 : 60 + 'rem',
-      }}
-    >
-      {props.sumBoxes.map(resultMapper)}
+    <div className={classes.Container} style={{ width: '500px' }}>
+      <div className={classes.ResultMap}>
+        <div className={classes.GraphContainer}>
+          {props.sumBoxes.map(resultMapper)}
+        </div>
+        <div id={classes.AvarageDeflection}>{props.avarageDeflection}%</div>
+      </div>
     </div>
   );
 };

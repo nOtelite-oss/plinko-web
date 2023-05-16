@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import Graph from './Graph';
 
 const Simulation = (props) => {
-  const [sumBoxes, changeSumBoxes] = useState(['-']);
-  const [idealResultScaled, changeIdealResultScaled] = useState(['-']);
-  const [sumDeflection, changeDeflection] = useState(['-']);
+  const [sumBoxes, changeSumBoxes] = useState([]);
+  const [idealResultScaled, changeIdealResultScaled] = useState([]);
+  const [sumDeflection, changeDeflection] = useState([]);
   const [avarageDeflection, changeAvarageDeflection] = useState(0);
   const [idealPascalTotal, changeIdealPascalTotal] = useState(0);
 
@@ -61,12 +61,24 @@ const Simulation = (props) => {
     const pascalTotal = idealResult.reduce((total, value) => total + value, 0);
     const closestNumber = Math.round(BALL_DROP / pascalTotal);
 
-    const idealResultScaled = idealResult.map((value) => value * closestNumber);
+    const calculateIdealResultScaled = () => {
+      if (idealResult.map((value) => value * closestNumber)[0] === 0) {
+        return new Array(BOX_COUNT).fill(1);
+      }
 
-    const pascalTotalScaled = idealResultScaled.reduce(
-      (total, value) => total + value,
-      0
-    );
+      return idealResult.map((value) => value * closestNumber);
+    };
+
+    const calculatePascalTotalScaled = () => {
+      if (idealResult.map((value) => value * closestNumber)[0] === 0) {
+        return 0;
+      }
+
+      return idealResultScaled.reduce((total, value) => total + value, 0);
+    };
+
+    const idealResultScaled = calculateIdealResultScaled();
+    const pascalTotalScaled = calculatePascalTotalScaled();
 
     changeIdealPascalTotal(pascalTotalScaled);
 

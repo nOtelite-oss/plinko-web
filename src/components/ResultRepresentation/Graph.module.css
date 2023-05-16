@@ -1,10 +1,29 @@
 .Container {
+  display: flex;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
+}
+
+/* .ResultMap {
   display: flex;
-  height: 18.75rem;
-  background-color: transparent;
+  flex-direction: column;
+} */
+
+.MapItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.GraphContainer {
+  display: flex;
+  height: 23rem;
+}
+
+.ResultMap {
+  display: flex;
+  flex-direction: column;
 }
 
 .Outer {
@@ -19,6 +38,26 @@
 .Fill {
   width: 100%;
   background-color: blue;
-  border: 3px solid black;
+  border: 1px solid black;
   border-radius: 5px;
+  transition: 0.2s ease;
+}
+
+#AvarageDeflection {
+  text-align: center;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+#RelativeParagraphs {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.RelativeParagraph {
+  text-align: left;
+  font-weight: 500;
+  padding: 5px;
+  margin: 0;
 }

@@ -1,0 +1,21 @@
+.GraphOuterDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.GraphInnerDiv {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.GraphParagraph {
+  text-align: center;
+  font-weight: 500;
+  padding: 0 3px 0 3px;
+  margin: 0;
+}
+
+.SumValueDiv {
+  display: flex;
+}

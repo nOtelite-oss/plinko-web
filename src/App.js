@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './App.css';
 
 import ResultRepresentation from './components/ResultRepresentation/ResultRepresentation';
-import { Test } from './components/Test';
 import ValueForm from './components/ValueForm/ValueForm.js';
 
 function App() {

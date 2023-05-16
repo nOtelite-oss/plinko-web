@@ -36,7 +36,6 @@ const ValueForm = (props) => {
             name='box-input'
             placeholder='Ex: 5'
             min={1}
-            max={29}
             onChange={boxNumberHandler}
             required
           />
@@ -54,6 +53,17 @@ const ValueForm = (props) => {
             onChange={ballNumberHandler}
             required
           />
+        </div>
+        <div className={(classes.FormContent, classes.Selector)}>
+          <label className={classes.FormLabel} htmlFor='solutionWay'>
+            Sellect Solution Way:{' '}
+          </label>
+          <select name='solutionWay' id={classes.SelectForm}>
+            <option value='GauissianDistrubution'>
+              Gauissian Distrubution
+            </option>
+            <option value='FullySimulate'>Fully Simulate</option>
+          </select>
         </div>
         <div className={classes.FormContent}>
           <button className={classes.SubmitButton} type='submit'>
