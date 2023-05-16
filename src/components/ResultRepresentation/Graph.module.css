@@ -19,11 +19,13 @@
 .GraphContainer {
   display: flex;
   height: 23rem;
+  width: 100%;
 }
 
 .ResultMap {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .Outer {
@@ -47,17 +49,4 @@
   text-align: center;
   font-weight: 600;
   margin-top: 0.25rem;
-}
-
-#RelativeParagraphs {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-}
-
-.RelativeParagraph {
-  text-align: left;
-  font-weight: 500;
-  padding: 5px;
-  margin: 0;
 }

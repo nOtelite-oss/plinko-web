@@ -43,11 +43,11 @@ const Graph = (props) => {
 
   const graphWidth =
     props.sumBoxes.length <= 10
-      ? props.sumBoxes.length * 4 + 'rem'
+      ? props.sumBoxes.length * 6 + 'rem'
       : 70 + 'rem';
 
   return (
-    <div className={classes.Container} style={{ width: '500px' }}>
+    <div className={classes.Container} style={{ width: graphWidth }}>
       <div className={classes.ResultMap}>
         <div className={classes.GraphContainer}>
           {props.sumBoxes.map(resultMapper)}

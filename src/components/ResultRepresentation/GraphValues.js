@@ -17,12 +17,11 @@ const GraphValues = (props) => {
   return (
     <div className={classes.GraphOuterDiv}>
       <div className={classes.GraphInnerDiv}>
-        <p className={classes.GraphParagraph}>{props.sumBoxes[props.index]}</p>{' '}
+        <p className={classes.GraphParagraph}>{props.sumBoxes[props.index]}</p>
       </div>
       <div className={classes.GraphInnerDiv}>
         <div className={classes.SumValueDiv}>
           <p className={classes.GraphParagraph}>
-            {' '}
             {props.idealResult[props.index]}
           </p>
 
