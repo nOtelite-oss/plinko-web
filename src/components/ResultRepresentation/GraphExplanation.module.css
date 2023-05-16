@@ -1,0 +1,14 @@
+.ExpDiv {
+  display: flex;
+  height: 25.1rem;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.ExpParagraph {
+  margin: 0;
+  width: max-content;
+  margin-top: 10px;
+  font-weight: 600;
+  user-select: none;
+}

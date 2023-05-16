@@ -2,6 +2,7 @@ import React from 'react';
 
 import GraphValues from './GraphValues';
 import classes from './Graph.module.css';
+import GraphExplanation from './GraphExplanation';
 
 const Graph = (props) => {
   const resultMapper = (item, index) => {
@@ -30,24 +31,27 @@ const Graph = (props) => {
           />
         </div>
 
-        <GraphValues
-          index={index}
-          sumBoxes={props.sumBoxes}
-          idealResult={props.idealResult}
-          sumDeflection={props.sumDeflection}
-          valueIndicatorColor={valueIndicatorColor}
-        />
+        {props.sumBoxes.length < 20 && (
+          <GraphValues
+            index={index}
+            sumBoxes={props.sumBoxes}
+            idealResult={props.idealResult}
+            sumDeflection={props.sumDeflection}
+            valueIndicatorColor={valueIndicatorColor}
+          />
+        )}
       </div>
     );
   };
 
   const graphWidth =
-    props.sumBoxes.length <= 14
-      ? props.sumBoxes.length * 5 + 'rem'
-      : 70 + 'rem';
+    props.sumBoxes.length <= 12
+      ? props.sumBoxes.length * 7 + 'rem'
+      : 84 + 'rem';
 
   return (
     <div className={classes.Container} style={{ width: graphWidth }}>
+      {props.sumBoxes.length < 20 && <GraphExplanation />}
       <div className={classes.ResultMap}>
         <div className={classes.GraphContainer}>
           {props.sumBoxes.map(resultMapper)}
