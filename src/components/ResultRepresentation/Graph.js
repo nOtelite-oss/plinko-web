@@ -42,8 +42,8 @@ const Graph = (props) => {
   };
 
   const graphWidth =
-    props.sumBoxes.length <= 10
-      ? props.sumBoxes.length * 6 + 'rem'
+    props.sumBoxes.length <= 14
+      ? props.sumBoxes.length * 5 + 'rem'
       : 70 + 'rem';
 
   return (
