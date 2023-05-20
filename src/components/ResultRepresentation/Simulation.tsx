@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { round } from '../../utils/utils';
 import Graph from './Graph';
 
 export type SimulationType = {
@@ -6,6 +7,8 @@ export type SimulationType = {
   boxCount: number;
   submitValue: number;
 };
+
+export const TO_FIXED_VAL = 2;
 
 const Simulation = (props: SimulationType) => {
   const [sumBoxes, changeSumBoxes] = useState<number[]>([]);
@@ -60,28 +63,32 @@ const Simulation = (props: SimulationType) => {
     })();
 
     //? Calculating closest Ideal result to final result for comparing it with the final result:
-    const idealResult = Array.from({ length: BOX_COUNT }, (e, i) =>
+    const idealResult = Array.from({ length: BOX_COUNT }, (_e, i) =>
       combination(BOX_COUNT - 1, i)
     );
 
     //? Calculating the pascal total and closest number to find ideal result scaled which is optimal result closest to simulation result:
     const pascalTotal = idealResult.reduce((total, value) => total + value, 0);
-    const closestNumber = Math.round(BALL_DROP / pascalTotal);
+    const closestNumber = BALL_DROP / pascalTotal;
 
     const calculateIdealResultScaled = () => {
-      if (idealResult.map((value) => value * closestNumber)[0] === 0) {
-        return new Array(BOX_COUNT).fill(1);
-      }
-
-      return idealResult.map((value) => value * closestNumber);
+      return idealResult
+        .map((value) => value * closestNumber)
+        .map((value) => round(value, TO_FIXED_VAL));
     };
 
-    const calculatePascalTotalScaled = () => {
+    const calculatePascalTotalScaled = (): number => {
+      let res: number;
       if (idealResult.map((value) => value * closestNumber)[0] === 0) {
-        return 0;
+        res = 0;
+      } else {
+        const idealResultScaledReduced = idealResultScaled.reduce(
+          (total, value) => total + value,
+          0
+        );
+        res = round(idealResultScaledReduced, TO_FIXED_VAL);
       }
-
-      return idealResultScaled.reduce((total, value) => total + value, 0);
+      return res;
     };
 
     const idealResultScaled = calculateIdealResultScaled();
