@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react';
 
 export const Test = () => {
-  const [value, setValue] = useState({
-    value: 'Hello',
-    endAt: 50000,
-  });
+  const [value, setValue] = useState('Hello');
 
   useEffect(() => {
-    if (value.value.length > value.endAt) return;
-    setValue((prev) => ({ ...prev, value: prev.value + '! ' }));
-  }, [value.value.length, value.endAt]);
+    const a = setInterval(() => {
+      console.log();
+      setValue((prev) => prev + '! ');
+    }, 1000);
+
+    return () => {
+      clearInterval(a);
+    };
+  }, []);
 
   console.log('render');
   return (
     <div>
-      <p style={{ maxWidth: '100%', whiteSpace: 'pre-wrap' }}>{value.value}</p>
+      <p style={{ maxWidth: '100%', whiteSpace: 'pre-wrap' }}>{value}</p>
     </div>
   );
 };

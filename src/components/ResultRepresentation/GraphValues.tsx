@@ -1,8 +1,16 @@
 import React from 'react';
 import classes from './GraphValues.module.css';
 
-const GraphValues = (props) => {
-  let valueChange =
+interface IGraphValues {
+  index: number;
+  sumBoxes: number[];
+  idealResult: number[];
+  sumDeflection: number[];
+  valueIndicatorColor: string;
+}
+
+const GraphValues = (props: IGraphValues) => {
+  let valueChange: string | number =
     props.sumBoxes[props.index] - props.idealResult[props.index];
 
   if (valueChange === 0) {

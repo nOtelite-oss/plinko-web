@@ -1,18 +1,24 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Graph from './Graph';
 
-const Simulation = (props) => {
-  const [sumBoxes, changeSumBoxes] = useState([]);
-  const [idealResultScaled, changeIdealResultScaled] = useState([]);
-  const [sumDeflection, changeDeflection] = useState([]);
-  const [avarageDeflection, changeAvarageDeflection] = useState(0);
-  const [idealPascalTotal, changeIdealPascalTotal] = useState(0);
+export type SimulationType = {
+  ballCount: number;
+  boxCount: number;
+  submitValue: number;
+};
 
-  const plinkoSim = (props) => {
+const Simulation = (props: SimulationType) => {
+  const [sumBoxes, changeSumBoxes] = useState<number[]>([]);
+  const [idealResultScaled, changeIdealResultScaled] = useState<number[]>([]);
+  const [sumDeflection, changeDeflection] = useState<number[]>([]);
+  const [avarageDeflection, changeAvarageDeflection] = useState<number>(0);
+  const [idealPascalTotal, changeIdealPascalTotal] = useState<number>(0);
+
+  const plinkoSim = (props: SimulationType) => {
     //* THE FUNCTIONS AND VARIBLES THAT PLINKO SIMULATION REQUIRES started
     //? Start values:
-    const BOX_COUNT = parseInt(props.boxCount); //How many boxes there will be. Note that if you give a value greater than 19 then ideal result is all 0. I dont know why.
-    const BALL_DROP = parseInt(props.ballCount); //How many balls will be dropped
+    const BOX_COUNT = props.boxCount; //How many boxes there will be. Note that if you give a value greater than 19 then ideal result is all 0. I dont know why.
+    const BALL_DROP = props.ballCount; //How many balls will be dropped
     const processParts = 2000;
 
     const getResults = () => {
@@ -34,19 +40,20 @@ const Simulation = (props) => {
     };
     //? Combination Function:
     const combination = (() => {
-      const cache = {};
-      const memoized = (n, r) => {
+      const cache: Record<string, any> = {};
+      const memoized = (n: number, r: number): number => {
+        const nString = n.toString();
         if (n === r || r === 0) {
           return 1;
         }
-        if (cache[n]?.[r]) {
-          return cache[n][r];
+        if (cache[nString]?.[r]) {
+          return cache[nString][r];
         }
         const result = memoized(n - 1, r - 1) + memoized(n - 1, r);
-        if (!cache[n]) {
-          cache[n] = {};
+        if (!cache[nString]) {
+          cache[nString] = {};
         }
-        cache[n][r] = result;
+        cache[nString][r] = result;
         return result;
       };
       return memoized;
@@ -148,7 +155,7 @@ const Simulation = (props) => {
       pascalTotal={idealPascalTotal}
       idealResult={idealResultScaled}
       sumDeflection={sumDeflection}
-      avarageDeflection={avarageDeflection}
+      averageDeflection={avarageDeflection}
     />
   );
 };

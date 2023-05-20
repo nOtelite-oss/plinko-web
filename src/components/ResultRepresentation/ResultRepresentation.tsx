@@ -1,7 +1,7 @@
 import React from 'react';
-import Simulation from './Simulation';
+import Simulation, { SimulationType } from './Simulation';
 
-const ResultRepresentation = (props) => {
+const ResultRepresentation = (props: SimulationType) => {
   return (
     <div>
       <Simulation
