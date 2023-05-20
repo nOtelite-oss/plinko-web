@@ -5,7 +5,6 @@ export const Test = () => {
 
   useEffect(() => {
     const a = setInterval(() => {
-      console.log();
       setValue((prev) => prev + '! ');
     }, 1000);
 
@@ -14,7 +13,6 @@ export const Test = () => {
     };
   }, []);
 
-  console.log('render');
   return (
     <div>
       <p style={{ maxWidth: '100%', whiteSpace: 'pre-wrap' }}>{value}</p>

@@ -8,7 +8,6 @@ interface IValueForm {
 const ValueForm = (props: IValueForm) => {
   const [boxNumber, boxNumberChanger] = useState<number>();
   const [ballNumber, ballNumberChanger] = useState<number>();
-
   const [submitValue, submitValueHandler] = useState<number>(0);
 
   const boxNumberHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
