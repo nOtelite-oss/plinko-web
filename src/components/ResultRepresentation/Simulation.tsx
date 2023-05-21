@@ -14,7 +14,7 @@ const Simulation = (props: SimulationType) => {
   const [sumBoxes, changeSumBoxes] = useState<number[]>([]);
   const [idealResultScaled, changeIdealResultScaled] = useState<number[]>([]);
   const [sumDeflection, changeDeflection] = useState<number[]>([]);
-  const [avarageDeflection, changeAvarageDeflection] = useState<number>(0);
+  const [avarageDeflection, changeAverageDeflection] = useState<number>(0);
   const [idealPascalTotal, changeIdealPascalTotal] = useState<number>(0);
 
   const plinkoSim = (props: SimulationType) => {
@@ -29,17 +29,17 @@ const Simulation = (props: SimulationType) => {
 
       let sumDeflection = [];
       for (let i = 0; i < BOX_COUNT; i++) {
-        sumDeflection[i] = Math.abs(
-          (sumBoxes[i] * 100) / idealResultScaled[i] - 100
+        const def = Math.abs(
+          (100 * (sumBoxes[i] - idealResultScaled[i])) / pascalTotalScaled
         );
+        sumDeflection[i] = isNaN(def) ? 0 : def;
       }
       changeDeflection(sumDeflection);
-
       const avarageDeflection =
         sumDeflection.reduce((total, value) => total + value, 0) /
         sumDeflection.length;
 
-      changeAvarageDeflection(avarageDeflection);
+      changeAverageDeflection(avarageDeflection);
     };
     //? Combination Function:
     const combination = (() => {
