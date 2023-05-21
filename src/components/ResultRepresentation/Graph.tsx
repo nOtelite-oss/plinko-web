@@ -1,11 +1,18 @@
 import React from 'react';
-
-import GraphValues from './GraphValues';
 import classes from './Graph.module.css';
 import GraphExplanation from './GraphExplanation';
+import GraphValues from './GraphValues';
 
-const Graph = (props) => {
-  const resultMapper = (item, index) => {
+type GraphType = {
+  sumBoxes: number[];
+  pascalTotal: number;
+  idealResult: number[];
+  sumDeflection: number[];
+  averageDeflection: number;
+};
+
+const Graph = (props: GraphType) => {
+  const resultMapper = (item: number, index: number) => {
     let maxItem = Math.max(...props.sumBoxes);
     let itemHeight = (100 * item) / maxItem;
 
@@ -56,7 +63,7 @@ const Graph = (props) => {
         <div className={classes.GraphContainer}>
           {props.sumBoxes.map(resultMapper)}
         </div>
-        <div id={classes.AvarageDeflection}>{props.avarageDeflection}%</div>
+        <div id={classes.AvarageDeflection}>{props.averageDeflection}%</div>
       </div>
     </div>
   );

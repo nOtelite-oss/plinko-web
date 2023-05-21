@@ -2,7 +2,7 @@
   display: flex;
   height: 25.1rem;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .ExpParagraph {

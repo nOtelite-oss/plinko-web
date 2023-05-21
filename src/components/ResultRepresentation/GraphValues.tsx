@@ -1,13 +1,21 @@
 import React from 'react';
 import classes from './GraphValues.module.css';
+import { TO_FIXED_VAL } from './Simulation';
 
-const GraphValues = (props) => {
-  let valueChange =
+interface IGraphValues {
+  index: number;
+  sumBoxes: number[];
+  idealResult: number[];
+  sumDeflection: number[];
+  valueIndicatorColor: string;
+}
+
+const GraphValues = (props: IGraphValues) => {
+  const valueChange =
     props.sumBoxes[props.index] - props.idealResult[props.index];
 
-  if (valueChange === 0) {
-    valueChange = '';
-  }
+  const valueDisplay =
+    valueChange === 0 ? '' : valueChange.toFixed(TO_FIXED_VAL);
 
   const deflection =
     props.sumDeflection[props.index] > 1
@@ -29,7 +37,7 @@ const GraphValues = (props) => {
             style={{ color: props.valueIndicatorColor }}
             className={classes.GraphParagraph}
           >
-            {valueChange}
+            {valueDisplay}
           </p>
         </div>
       </div>
