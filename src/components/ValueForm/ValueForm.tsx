@@ -31,47 +31,45 @@ const ValueForm = (props: IValueForm) => {
       <h1 className={classes.MainHeader}>Plinko Simulation</h1>
       <form className={classes.MainContainer} onSubmit={submitHandler}>
         <div className={classes.FormContent}>
-          <label className={classes.FormLabel} htmlFor="box-input">
+          <label className={classes.FormLabel} htmlFor='box-input'>
             Box Number:
           </label>
           <input
             className={classes.FormInput}
-            type="number"
-            id="box-input"
-            name="box-input"
-            placeholder="Ex: 5"
+            type='number'
+            id='box-input'
+            placeholder='Ex: 5'
             min={1}
             onChange={boxNumberHandler}
             required
           />
         </div>
         <div className={classes.FormContent}>
-          <label className={classes.FormLabel} htmlFor="ball-input">
+          <label className={classes.FormLabel} htmlFor='ball-input'>
             Ball Number:
           </label>
           <input
             className={classes.FormInput}
-            type="number"
-            id="ball-input"
-            name="ball-input"
-            placeholder="Ex: 1000000"
+            type='number'
+            id='ball-input'
+            placeholder='Ex: 1000000'
             onChange={ballNumberHandler}
             required
           />
         </div>
         <div className={(classes.FormContent, classes.Selector)}>
-          <label className={classes.FormLabel} htmlFor="solutionWay">
-            Sellect Solution Way:{' '}
+          <label className={classes.FormLabel} htmlFor={classes.SelectForm}>
+            Sellect Solution Way:
           </label>
-          <select name="solutionWay" id={classes.SelectForm}>
-            <option value="GauissianDistrubution">
+          <select id={classes.SelectForm}>
+            <option value='GauissianDistrubution'>
               Gauissian Distrubution
             </option>
-            <option value="FullySimulate">Fully Simulate</option>
+            <option value='FullySimulate'>Fully Simulate</option>
           </select>
         </div>
         <div className={classes.FormContent}>
-          <button className={classes.SubmitButton} type="submit">
+          <button className={classes.SubmitButton} type='submit'>
             Simulate
           </button>
         </div>

@@ -12,6 +12,12 @@ type GraphType = {
 };
 
 const Graph = (props: GraphType) => {
+  const graphWidth =
+    props.sumBoxes.length <= 12 ? props.sumBoxes.length * 7 : 84;
+
+  console.log(
+    'Graph witdh: ' + graphWidth * 16 + ' ,Item Witdh: ' + (graphWidth * 16) / 7
+  );
   const resultMapper = (item: number, index: number) => {
     let maxItem = Math.max(...props.sumBoxes);
     let itemHeight = (100 * item) / maxItem;
@@ -24,11 +30,7 @@ const Graph = (props: GraphType) => {
         : '';
 
     return (
-      <div
-        className={classes.MapItems}
-        style={{ height: '100%', width: '100%' }}
-        key={index}
-      >
+      <div className={classes.MapItems} key={index}>
         <div className={classes.Outer}>
           <div
             className={classes.Fill}
@@ -36,6 +38,17 @@ const Graph = (props: GraphType) => {
               height: itemHeight + '%',
             }}
           />
+          <div
+            className={classes.IdealResDivOuter}
+            style={{ width: (graphWidth - 8) / props.sumBoxes.length + 'rem' }}
+          >
+            <div
+              className={classes.IdealResDivInner}
+              style={{
+                height: itemHeight + '%',
+              }}
+            ></div>
+          </div>
         </div>
 
         {props.sumBoxes.length < 20 && (
@@ -51,13 +64,8 @@ const Graph = (props: GraphType) => {
     );
   };
 
-  const graphWidth =
-    props.sumBoxes.length <= 12
-      ? props.sumBoxes.length * 7 + 'rem'
-      : 84 + 'rem';
-
   return (
-    <div className={classes.Container} style={{ width: graphWidth }}>
+    <div className={classes.Container} style={{ width: graphWidth + 'rem' }}>
       {props.sumBoxes.length < 20 && <GraphExplanation />}
       <div className={classes.ResultMap}>
         <div className={classes.GraphContainer}>

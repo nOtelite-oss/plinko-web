@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 
 import './App.css';
 
-import ResultRepresentation from './components/ResultRepresentation/ResultRepresentation';
 import ValueForm from './components/ValueForm/ValueForm';
+
+import Simulation from './components/ResultRepresentation/Simulation';
 
 function App() {
   const [boxCount, changeBoxCount] = useState<number>(0);
@@ -24,7 +25,7 @@ function App() {
     <div>
       <ValueForm getValues={FormValueHandler} />
       {!!ballCount && (
-        <ResultRepresentation
+        <Simulation
           ballCount={ballCount}
           boxCount={boxCount}
           submitValue={submitValue}

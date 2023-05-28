@@ -6,14 +6,11 @@
   margin-top: 2rem;
 }
 
-/* .ResultMap {
-  display: flex;
-  flex-direction: column;
-} */
-
 .MapItems {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .GraphContainer {
@@ -25,13 +22,13 @@
 .ResultMap {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   width: 100%;
 }
 
 .Outer {
   height: 100%;
   width: 100%;
-  margin: 0 0 5px 0;
   background-color: transparent;
   display: flex;
   align-items: flex-end;
@@ -43,11 +40,26 @@
   border: 1px solid black;
   border-radius: 5px;
   transition: 0.2s ease;
+  box-sizing: border-box;
 }
 
 #AvarageDeflection {
   text-align: center;
   font-weight: 500;
   user-select: none;
-  margin-top: 0.8125rem;
+  margin-top: 0.625rem;
+}
+
+.IdealResDivOuter {
+  height: 277px;
+  position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.IdealResDivInner {
+  border: 2px solid red;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: 0.2s ease;
 }

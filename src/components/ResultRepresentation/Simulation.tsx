@@ -8,7 +8,7 @@ export type SimulationType = {
   submitValue: number;
 };
 
-export const TO_FIXED_VAL = 2;
+export const TO_FIXED_VAL = 1;
 
 const Simulation = (props: SimulationType) => {
   const [sumBoxes, changeSumBoxes] = useState<number[]>([]);

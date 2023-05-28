@@ -1,13 +1,13 @@
 .ExpDiv {
   display: flex;
-  height: 25.1rem;
+  height: 25.125rem;
   flex-direction: column;
   justify-content: flex-end;
 }
 
 .ExpParagraph {
   margin: 0;
-  width: max-content;
+  width: 8rem;
   margin-top: 10px;
   font-weight: 600;
   user-select: none;
