@@ -16,6 +16,7 @@ const Simulation = (props: SimulationType) => {
   const [sumDeflection, changeDeflection] = useState<number[]>([]);
   const [avarageDeflection, changeAverageDeflection] = useState<number>(0);
   const [idealPascalTotal, changeIdealPascalTotal] = useState<number>(0);
+  const [boxDropPossibilitys, setBoxDropPossibilitys] = useState<number[]>([]);
 
   const plinkoSim = (props: SimulationType) => {
     //* THE FUNCTIONS AND VARIBLES THAT PLINKO SIMULATION REQUIRES started
@@ -108,6 +109,8 @@ const Simulation = (props: SimulationType) => {
         boxDropPossibilitys.push(idealResult[i] / pascalTotal);
       }
 
+      setBoxDropPossibilitys(boxDropPossibilitys);
+
       for (let i = 0; i < processParts; i++) {
         for (let i = 0; i < BALL_DROP / processParts; i++) {
           let currentP = boxDropPossibilitys[0];
@@ -131,6 +134,9 @@ const Simulation = (props: SimulationType) => {
       for (let i = 0; i < BOX_COUNT; i++) {
         boxDropPossibilitys.push(idealResult[i] / pascalTotal);
       }
+
+      setBoxDropPossibilitys(boxDropPossibilitys);
+
       for (let i = 0; i < BALL_DROP; i++) {
         let currentP = boxDropPossibilitys[0];
         let randomNumber = Math.random();
@@ -163,6 +169,7 @@ const Simulation = (props: SimulationType) => {
       idealResult={idealResultScaled}
       sumDeflection={sumDeflection}
       averageDeflection={avarageDeflection}
+      boxDropPossibilitys={boxDropPossibilitys}
     />
   );
 };

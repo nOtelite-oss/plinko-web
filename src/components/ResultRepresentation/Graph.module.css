@@ -37,7 +37,7 @@
 .Fill {
   width: 100%;
   background-color: blue;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 5px;
   transition: 0.2s ease;
   box-sizing: border-box;
@@ -48,18 +48,4 @@
   font-weight: 500;
   user-select: none;
   margin-top: 0.625rem;
-}
-
-.IdealResDivOuter {
-  height: 277px;
-  position: absolute;
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-.IdealResDivInner {
-  border: 2px solid red;
-  border-radius: 5px;
-  box-sizing: border-box;
-  transition: 0.2s ease;
 }

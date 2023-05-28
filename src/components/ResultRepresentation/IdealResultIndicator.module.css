@@ -1,0 +1,14 @@
+.IdealResDivOuter {
+  height: 277px;
+  position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.IdealResDivInner {
+  border: 2px solid red;
+  border-bottom: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: 0.2s linear;
+}

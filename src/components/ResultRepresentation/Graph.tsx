@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Graph.module.css';
 import GraphExplanation from './GraphExplanation';
 import GraphValues from './GraphValues';
+import IdealResultIndicator from './IdealResultIndicator';
 
 type GraphType = {
   sumBoxes: number[];
@@ -9,15 +10,13 @@ type GraphType = {
   idealResult: number[];
   sumDeflection: number[];
   averageDeflection: number;
+  boxDropPossibilitys: number[];
 };
 
 const Graph = (props: GraphType) => {
-  const graphWidth =
+  const graphWidth: number =
     props.sumBoxes.length <= 12 ? props.sumBoxes.length * 7 : 84;
 
-  console.log(
-    'Graph witdh: ' + graphWidth * 16 + ' ,Item Witdh: ' + (graphWidth * 16) / 7
-  );
   const resultMapper = (item: number, index: number) => {
     let maxItem = Math.max(...props.sumBoxes);
     let itemHeight = (100 * item) / maxItem;
@@ -38,17 +37,13 @@ const Graph = (props: GraphType) => {
               height: itemHeight + '%',
             }}
           />
-          <div
-            className={classes.IdealResDivOuter}
-            style={{ width: (graphWidth - 8) / props.sumBoxes.length + 'rem' }}
-          >
-            <div
-              className={classes.IdealResDivInner}
-              style={{
-                height: itemHeight + '%',
-              }}
-            ></div>
-          </div>
+
+          <IdealResultIndicator
+            graphWidth={graphWidth}
+            sumBoxes={props.sumBoxes}
+            boxDropPossibilitys={props.boxDropPossibilitys}
+            index={index}
+          />
         </div>
 
         {props.sumBoxes.length < 20 && (
