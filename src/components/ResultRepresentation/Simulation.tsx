@@ -6,6 +6,7 @@ export type SimulationType = {
   ballCount: number;
   boxCount: number;
   submitValue: number;
+  getDeflection: (a:number) => void
 };
 
 export const TO_FIXED_VAL = 1;
@@ -153,6 +154,8 @@ const Simulation = (props: SimulationType) => {
       getResults();
     }
   };
+
+  props.getDeflection(avarageDeflection)
 
   useEffect(() => {
     const effectFunction = () => {

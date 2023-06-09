@@ -54,6 +54,7 @@ const ValueForm = (props: IValueForm) => {
             id='ball-input'
             placeholder='Ex: 1000000'
             onChange={ballNumberHandler}
+            min={1}
             required
           />
         </div>
@@ -68,7 +69,7 @@ const ValueForm = (props: IValueForm) => {
             <option value='FullySimulate'>Fully Simulate</option>
           </select>
         </div>
-        <div className={classes.FormContent}>
+        <div className={classes.FormContent} id={classes.FormButtonDiv}>
           <button className={classes.SubmitButton} type='submit'>
             Simulate
           </button>
