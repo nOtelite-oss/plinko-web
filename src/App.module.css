@@ -1,0 +1,41 @@
+.AppContainer {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 1980px) {
+  .AppContainer {
+    max-width: 1440px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .AppContainer {
+    max-width: 1240px;
+  }
+}
+
+@media (max-width: 1240px) {
+  .AppContainer {
+    max-width: 940px;
+  }
+}
+
+@media (max-width: 940px ) {
+  .AppContainer {
+    max-width: 640px;
+  }
+}
+
+@media (max-width: 640px ) {
+  .AppContainer {
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 340px ) {
+  .AppContainer {
+    max-width: 323px;
+  }
+}
+

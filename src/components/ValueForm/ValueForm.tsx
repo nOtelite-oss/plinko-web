@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import classes from './ValueForm.module.css';
 
 interface IValueForm {
-  getValues: (a: number, b: number, c: number) => void;
+  getValues: (a: number, b: number, c: number, d: 0 | 1) => void;
 }
 
 const ValueForm = (props: IValueForm) => {
   const [boxNumber, boxNumberChanger] = useState<number>();
   const [ballNumber, ballNumberChanger] = useState<number>();
+  const [simType, setSimType] = useState<0|1>(1)
   const [submitValue, submitValueHandler] = useState<number>(0);
 
   const boxNumberHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,21 +19,29 @@ const ValueForm = (props: IValueForm) => {
     ballNumberChanger(parseInt(event.target.value) ?? 0);
   };
 
+  const simTypeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if(event.target.value === 'FullySimulate') {
+      setSimType(0)
+    } else {
+      setSimType(1)
+    }
+  }
+    
+  // const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!!boxNumber && !!ballNumber) {
-      props.getValues(boxNumber, ballNumber, submitValue);
+      props.getValues(boxNumber, ballNumber, submitValue, simType);
     }
     submitValueHandler(submitValue + 1);
   };
 
   return (
     <div>
-      <h1 className={classes.MainHeader}>Plinko Simulation</h1>
       <form className={classes.MainContainer} onSubmit={submitHandler}>
         <div className={classes.FormContent}>
           <label className={classes.FormLabel} htmlFor='box-input'>
-            Box Number:
+            BOX NUMBER:
           </label>
           <input
             className={classes.FormInput}
@@ -46,7 +55,7 @@ const ValueForm = (props: IValueForm) => {
         </div>
         <div className={classes.FormContent}>
           <label className={classes.FormLabel} htmlFor='ball-input'>
-            Ball Number:
+            BALL NUMBER:
           </label>
           <input
             className={classes.FormInput}
@@ -60,9 +69,9 @@ const ValueForm = (props: IValueForm) => {
         </div>
         <div className={(classes.FormContent, classes.Selector)}>
           <label className={classes.FormLabel} htmlFor={classes.SelectForm}>
-            Sellect Solution Way:
+            SELLECT SOLLUTION WAY:
           </label>
-          <select id={classes.SelectForm}>
+          <select id={classes.SelectForm} onChange={simTypeHandler}>
             <option value='GauissianDistrubution'>
               Gauissian Distrubution
             </option>

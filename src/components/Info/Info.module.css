@@ -1,0 +1,24 @@
+.InfoContainer {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.InfoMainHeader {
+  color: #e5ce5c;
+  margin-left: 33px;
+}
+
+.InfoSecondaryHeader {
+  color: #86b7fc;
+  margin-bottom: 5px;
+}
+
+.InfoParagraph {
+  color: #bbd5ed;
+  margin: 0;
+}
+
+.InfoSection {
+  margin-top: 35px;
+}

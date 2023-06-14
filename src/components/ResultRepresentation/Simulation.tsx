@@ -5,8 +5,10 @@ import Graph from './Graph';
 export type SimulationType = {
   ballCount: number;
   boxCount: number;
+  simType: 0 | 1;
   submitValue: number;
-  getDeflection: (a:number) => void
+  getDeflection: (a:number) => void;
+  lastDeflection: number;
 };
 
 export const TO_FIXED_VAL = 1;
@@ -15,9 +17,15 @@ const Simulation = (props: SimulationType) => {
   const [sumBoxes, changeSumBoxes] = useState<number[]>([]);
   const [idealResultScaled, changeIdealResultScaled] = useState<number[]>([]);
   const [sumDeflection, changeDeflection] = useState<number[]>([]);
-  const [avarageDeflection, changeAverageDeflection] = useState<number>(0);
+  const [avarageDeflection, changeAverageDeflection] = useState<number>(props.lastDeflection);
   const [idealPascalTotal, changeIdealPascalTotal] = useState<number>(0);
   const [boxDropPossibilitys, setBoxDropPossibilitys] = useState<number[]>([]);
+
+  const SOLUTION_WAY: 0 | 1 = props.simType;
+
+  console.log(SOLUTION_WAY)
+
+  console.log(SOLUTION_WAY)
 
   const plinkoSim = (props: SimulationType) => {
     //* THE FUNCTIONS AND VARIBLES THAT PLINKO SIMULATION REQUIRES started
@@ -43,6 +51,18 @@ const Simulation = (props: SimulationType) => {
 
       changeAverageDeflection(avarageDeflection);
     };
+    
+    //? Ball Randomization function:
+    const LeftOrRight = (n: number) => {
+      let sumNumber = 0;
+    
+      for (let i = 0; i < n; i++) {
+        sumNumber += Math.random() > 0.7 ? 0.5 : -0.5;
+      }
+    
+      return sumNumber;
+    };
+
     //? Combination Function:
     const combination = (() => {
       const cache: Record<string, any> = {};
@@ -131,6 +151,17 @@ const Simulation = (props: SimulationType) => {
         getResults();
       }
     } else {
+      if(SOLUTION_WAY === 0) {
+        const middleBox = Math.ceil(BOX_COUNT / 2);
+        for (let i = 0; i < BALL_DROP; i++) {
+          const whichBox =
+            middleBox +
+            ((BOX_COUNT & 1) === 0 ? 0.5 : 0) +
+            LeftOrRight(BOX_COUNT - 1);
+          sumBoxes[whichBox - 1] += 1;
+        }
+        getResults()
+      } else {
       const boxDropPossibilitys = [];
       for (let i = 0; i < BOX_COUNT; i++) {
         boxDropPossibilitys.push(idealResult[i] / pascalTotal);
@@ -150,7 +181,7 @@ const Simulation = (props: SimulationType) => {
             currentP += boxDropPossibilitys[i + 1];
           }
         }
-      }
+      }}
       getResults();
     }
   };
@@ -158,7 +189,7 @@ const Simulation = (props: SimulationType) => {
   props.getDeflection(avarageDeflection)
 
   useEffect(() => {
-    const effectFunction = () => {
+    const effectFunction = () => { 
       plinkoSim(props);
     };
 
